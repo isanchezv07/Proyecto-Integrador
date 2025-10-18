@@ -1,3 +1,4 @@
+#IsanchezV07-17/10/2025
 import sys
 
 def normalize(word):
