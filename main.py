@@ -43,11 +43,9 @@ def leer_diccionario(path):
                 linea = linea.strip()
                 if not linea:
                     continue
-                # Línea en formato 'palabra': numero,
                 if ":" not in linea:
                     continue
                 palabra_raw, freq_raw = linea.split(":", 1)
-                # Limpiar comillas y comas
                 palabra_raw = palabra_raw.strip().strip("'\"")
                 freq_raw = freq_raw.strip().rstrip(",")
                 palabra = normalize(palabra_raw)
@@ -76,6 +74,7 @@ def leer_diccionario(path):
 
     return combinadas
 
+
 def binaria_tuplas(dicc, objetivo):
     izquierda = 0
     derecha = len(dicc) - 1
@@ -92,25 +91,20 @@ def binaria_tuplas(dicc, objetivo):
 
 
 def generar_variantes_1ed(w, alfabeto):
-
     variantes = []
     n = len(w)
 
-
     for i in range(n):
         variantes.append(w[:i] + w[i+1:])
-
 
     for i in range(n + 1):
         for c in alfabeto:
             variantes.append(w[:i] + c + w[i:])
 
-
     for i in range(n):
         for c in alfabeto:
             if c != w[i]:
                 variantes.append(w[:i] + c + w[i+1:])
-
 
     for i in range(n - 1):
         variantes.append(w[:i] + w[i+1] + w[i] + w[i+2:])
@@ -118,9 +112,7 @@ def generar_variantes_1ed(w, alfabeto):
     return variantes
 
 
-
 def filtrar_contra_dicc(variantes, dicc):
-
     candidatos = []
     for v in variantes:
         idx = binaria_tuplas(dicc, v)
@@ -129,15 +121,11 @@ def filtrar_contra_dicc(variantes, dicc):
     return candidatos
 
 
-
 def deduplicar_ordenado(cands):
-
     if not cands:
         return []
 
-
     cands.sort(key=lambda x: x[0])
-
     res = []
     i = 0
     n = len(cands)
@@ -145,7 +133,6 @@ def deduplicar_ordenado(cands):
         w = cands[i][0]
         maxf = cands[i][1]
         j = i + 1
-
         while j < n and cands[j][0] == w:
             if cands[j][1] > maxf:
                 maxf = cands[j][1]
@@ -155,12 +142,10 @@ def deduplicar_ordenado(cands):
     return res
 
 
-
 def ordenar_por_frecuencia(cands):
     return sorted(cands, key=lambda x: (-x[1], x[0]))
 
 
-    
 def main():
     if len(sys.argv) < 3:
         print("Uso: python main.py palabra k")
@@ -177,14 +162,12 @@ def main():
         return
 
     alfabeto = list("abcdefghijklmnopqrstuvwxyzñ")
-
     dicc = leer_diccionario("word_freq.txt")
     if not dicc:
         print("Diccionario vacío o no encontrado.")
         return
 
     palabra = normalize(palabra_input)
-
     idx = binaria_tuplas(dicc, palabra)
     if idx != -1:
         encontrado = dicc[idx]
@@ -192,11 +175,8 @@ def main():
         return
 
     variantes = generar_variantes_1ed(palabra, alfabeto)
-
     candidatos = filtrar_contra_dicc(variantes, dicc)
-
     candidatos = deduplicar_ordenado(candidatos)
-
     candidatos = ordenar_por_frecuencia(candidatos)
 
     if not candidatos:
@@ -209,5 +189,5 @@ def main():
         print(f"{i}. {w} (freq={f})")
 
 
-if __name__ == "__main__":
-    main() 
+if __name__ == "__main__":  # pragma: no cover
+    main()
