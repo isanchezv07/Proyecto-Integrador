@@ -128,3 +128,48 @@ El corrector utiliza un enfoque basado en:
 3. **Generación de variantes** a una edición de distancia
 4. **Filtrado** contra el diccionario
 5. **Ordenamiento** por relevancia (frecuencia + alfabético)
+
+---
+
+## 📚 Documentación e Investigación
+
+Este proyecto está respaldado por una investigación académica completa que profundiza en los aspectos teóricos y prácticos de los correctores ortográficos.
+
+### Contenido del Documento de Investigación
+
+El documento [`investigacion.pdf`](./Investigación.pdf) incluye:
+
+#### **1. Marco Teórico**
+- **Distancias de edición** (Levenshtein y Damerau-Levenshtein)
+- Operaciones básicas: inserción, eliminación, sustitución y transposición
+- Diferencias entre algoritmos de distancia y sus aplicaciones
+
+#### **2. Implementación y Diseño**
+- **Normalización de texto**: manejo de acentos, mayúsculas y caracteres especiales
+- **Generación de variantes** a una edición de distancia
+- **Búsqueda binaria** para optimización de consultas
+- **Ranking por frecuencia**: ordenamiento de sugerencias basado en uso real
+
+#### **3. Evaluación y Métricas**
+- Métricas Top-k (Accuracy@k, Recall@k)
+- Mean Reciprocal Rank (MRR)
+- Análisis de rendimiento y casos de uso
+
+#### **4. Aplicaciones y Limitaciones**
+- Casos de uso: teclados móviles, buscadores web, formularios
+- Limitaciones del enfoque de una sola edición
+- Restricciones con nombres propios, jerga y palabras poco frecuentes
+- Solo funciona con palabras en inglés
+
+#### **5. Análisis Detallado del Código**
+- Explicación función por función con ejemplos prácticos
+- Flujo completo del proceso de corrección
+- Optimizaciones implementadas
+
+#### **6. Referencias Bibliográficas**
+- Damerau (1964) - Detección y corrección de errores
+- Levenshtein (1966) - Códigos binarios de corrección
+- Jurafsky & Martin (2023) - Procesamiento del lenguaje
+- Norvig (2007) - Implementación práctica de correctores
+
+> **Consulta el documento PDF** para una comprensión profunda de la metodología, fundamentos teóricos, análisis matemático y decisiones de diseño que sustentan este corrector ortográfico.
